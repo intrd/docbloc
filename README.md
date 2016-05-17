@@ -113,7 +113,7 @@ Considering that you already have:
 - Created/edited your `composer.json`
 - Filled all files w/ the correct DocBloc trigger 
 
-Now run the command below at your project root:
+Now go to your project root and run:
 ```
 $ wget -O docbloc.php https://raw.githubusercontent.com/intrd/php-docbloc/1.0/src/docbloc.php && php docbloc.php && rm docbloc.php
 ```
