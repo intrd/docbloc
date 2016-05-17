@@ -37,6 +37,8 @@ PHP DocBloc - Batch generate and keep updated DockBlock of your project files fe
 </span>
 <!-- @docbloc 1.0 -->
 
+![php-auto-docbloc](/imgs/php-auto-docbloc.gif?raw=true "php-auto-docbloc")
+
 Installation
 ============
 
