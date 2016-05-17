@@ -3,7 +3,7 @@ REM
 :: PHP DocBloc - Batch generate and keep updated DockBlock of your project files fetching details from composer.json and .git/HEAD. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).
 ::
 :: @package intrd/php-docbloc
-:: @version 
+:: @version 1.0
 :: @tags php, docblock, documentation, tool
 :: @link http://github.com/intrd/php-docbloc
 :: @author intrd (Danilo Salles) - http://dann.com.br

@@ -8,7 +8,7 @@ PHP DocBloc - Batch generate and keep updated DockBlock of your project files fe
 </tr>
 <tr>
 <th>Version</th>
-<td></td>
+<td>1.0</td>
 </tr>
 <tr>
 <th>Tags</th>
