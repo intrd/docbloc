@@ -42,13 +42,82 @@ Installation
 
 System requiriments & dependencies
 
-Just a sample file.
+```
+$ sudo apt-get update & apt-get upgrade
+$ sudo apt-get install curl git php-curl php-cli
+```
+## composer.json sample
+
+DocBloc fetch all your project details from `composer.json`. If your project still does not have one, create it following sample below and put at your project root path.
 
 ```
-$ command_sample
+{
+    "name": "intrd/php-docbloc",
+    "description": "PHP DocBloc - Batch generate and keep updated DockBlock of your project files fetching details from composer.json and .git/HEAD. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).",
+    "keywords": ["php","docblock","documentation","tool"],
+    "homepage": "http://github.com/intrd/php-docbloc",
+    "authors": [
+            {
+                "name": "intrd (Danilo Salles)",
+                "email": "x@dann.com.br",
+                "homepage": "http://dann.com.br",
+                "role": "Developer"
+            }
+        ],
+    "license": "CC-BY-SA-4.0",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "telegram\\":"src/"
+        }
+    },
+    "extra": {
+        "author_twitter":"intrd",
+        "copyright_author":"intrd",
+        "license_title":"Creative Commons Attribution-ShareAlike 4.0",
+        "license_url":"http://creativecommons.org/licenses/by-sa/4.0"
+    }
+}
+```
+
+## @docbloc triggers
+
+Every file format have your own trigger, put this on header of the files that you want to DocBloc start managment.
+
+PHP - Script
+```
+/** @docbloc **/
+```
+INI - Configuration file
+```
+;; @docbloc ;;
+```
+SH - Shell script
+```
+## @docbloc ##
+```
+BAT - Batch script
+```
+REM @docbloc REM
+```
+MD - Markdown files like README.md
+```
+<!-- @docbloc -->
 ```
 ## Usage
 
-*TL;DR*: This is a sample README.md.
+Now, considering that you already:
+- have PHP and Curl working 
+- created/edited your `composer.json`
+- filled all script files w/ the correct @docbloc trigger 
+
+..just run the command below at your project root
+
+$ curl -sS https://github.com/intrd/php-docbloc/tree/1.0/src/docbloc.php | sudo php --
+
+Done,
+Every time you change any project detail at composer.json or create a new git branch/version, just run docbloc again and it will keep all files updated.
 
 
