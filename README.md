@@ -82,7 +82,7 @@ DocBloc fetch all your project details from `composer.json`. If your project sti
 }
 ```
 
-## @docbloc triggers
+## Docbloc triggers
 
 Every file format have your own trigger, put this on header of the files that you want to DocBloc start managment.
 
