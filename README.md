@@ -46,7 +46,7 @@ System requiriments & dependencies
 $ sudo apt-get update & apt-get upgrade
 $ sudo apt-get install curl git php-curl php-cli
 ```
-## composer.json sample
+## Composer.json sample
 
 DocBloc fetch all your project details from `composer.json`. If your project still does not have one, create it following sample below and put at your project root path.
 
@@ -108,16 +108,16 @@ MD - Markdown files like README.md
 ```
 ## Usage
 
-Now, considering that you already:
-- have PHP and Curl working 
-- created/edited your `composer.json`
-- filled all script files w/ the correct @docbloc trigger 
+Considering that you already have:
+- PHP and Curl working 
+- Created/edited your `composer.json`
+- Filled all files w/ the correct DocBloc trigger 
 
-..just run the command below at your project root
-
-$ curl -sS https://github.com/intrd/php-docbloc/tree/1.0/src/docbloc.php | sudo php --
-
+Now run the command below at your project root:
+```
+$ curl -sS [a workaround link](src/docbloc.php) | sudo php --
+```
 Done,
-Every time you change any project detail at composer.json or create a new git branch/version, just run docbloc again and it will keep all files updated.
+Every time you change any project detail at `composer.json` or create a new git `branch/version`, simply run docbloc again to keep all things updated.
 
 
