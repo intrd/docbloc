@@ -114,9 +114,9 @@ Considering that you already have:
 - Filled all files w/ the correct DocBloc trigger 
 
 Now run the command below at your project root:
-```
-$ curl -sS [a workaround link](src/docbloc.php) | sudo php --
-```
+
+***$*** curl -sS [a workaround link](src/docbloc.php) | sudo php --
+
 Done,
 Every time you change any project detail at `composer.json` or create a new `git branch` version, simply run DocBloc again to keep all things updated.
 
