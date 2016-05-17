@@ -44,7 +44,7 @@ System requiriments & dependencies
 
 ```
 $ sudo apt-get update & apt-get upgrade
-$ sudo apt-get install curl git php-curl php-cli
+$ sudo apt-get install git php-curl php-cli
 ```
 ## Composer.json sample
 
@@ -109,7 +109,7 @@ MD - Markdown files like README.md
 ## Usage
 
 Considering that you already have:
-- PHP and Curl working 
+- PHP working 
 - Created/edited your `composer.json`
 - Filled all files w/ the correct DocBloc trigger 
 
