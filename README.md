@@ -115,7 +115,7 @@ Considering that you already have:
 
 Now run the command below at your project root:
 
-***$*** curl -sS [(src/docbloc.php)](src/docbloc.php) | sudo php --
+***$*** curl -sS (src/docbloc.php) | sudo php --
 
 Done,
 Every time you change any project detail at `composer.json` or create a new `git branch` version, simply run DocBloc again to keep all things updated.
