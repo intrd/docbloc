@@ -39,15 +39,7 @@ PHP DocBloc - Generate and keep updated DocBlock of your project files fetching 
 
 ![php-auto-docbloc](/imgs/php-auto-docbloc.gif?raw=true "php-auto-docbloc")
 
-Installation
-============
 
-System requiriments & dependencies
-
-```
-$ sudo apt-get update & apt-get upgrade
-$ sudo apt-get install git php-curl php-cli
-```
 ## Composer.json sample
 
 DocBloc fetch your project details from `composer.json`. If your project still does not have one, create it following sample below and put at your project root path.
@@ -120,6 +112,8 @@ Now go to your project root and run:
 ```
 $ wget -O docbloc.php https://raw.githubusercontent.com/intrd/php-docbloc/1.0/src/docbloc.php && php docbloc.php && rm docbloc.php
 ```
+It will download docbloc.php script, run and remove it.
+
 Done,
 Every time you change any project detail at `composer.json` or create a new `git branch` version, simply run DocBloc again to keep all your files docbloc header updated. Yes, it works recursively on upper directory levels too.
 
