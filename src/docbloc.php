@@ -1,16 +1,16 @@
 <?php
 /**
- * PHP DocBloc - Generate and keep updated DocBlock of your project files fetching details from composer.json and Git. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
+ * PHP docBloc - Generate and keep updated docBlock of your project files fetching details from composer.json and Git. Supported filetypes: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
  * 
 * @package intrd/php-docbloc
-* @version 1.0
+* @version 1.1
 * @tags: php, docblock, documentation, tool
 * @link http://github.com/intrd/php-docbloc
 * @author intrd (Danilo Salles) - http://dann.com.br
 * @copyright (CC-BY-SA-4.0) 2016, intrd
 * @license Creative Commons Attribution-ShareAlike 4.0 - http://creativecommons.org/licenses/by-sa/4.0
 * Dependencies: No
-*** @docbloc 1.0 */
+*** @docbloc 1.1 */
 
 /* Default config */
 	//PHP SCRIPT
@@ -133,7 +133,7 @@ if(file_exists('.git/HEAD')){
 	$vars["git_branch_version"]=$git_branch_version;
 }
 
-/* Starting DocBloc... */
+/* Starting docBloc... */
 $filepath="docbloc.php";
 $file = file_get_contents($filepath);
 foreach (token_get_all($file) as $token ) {
@@ -153,7 +153,7 @@ foreach (token_get_all($file) as $token ) {
 if (!isset($docbloc_author_nickname) or !isset($docbloc_version) 
 	or $docbloc_version<1 or $docbloc_author_nickname!="intrd") 
 	die("\r\n*** docbloc.php file changed, please re-download.");
-echo "# PHP DocBloc $docbloc_version (by $docbloc_author_nickname)\n"; 
+echo "# PHP docBloc $docbloc_version (by $docbloc_author_nickname)\n"; 
 echo " ** starting..\n";
 
 if (!file_exists("composer.json")) 
@@ -172,9 +172,35 @@ foreach($regex as $filepath => $regex){
 	if (strpos($filepath,$exclude)===false) $files[]=$filepath;
 }
 
-/* Updating your project scripts w/ new DocBlock */
+/* Generate docbloc function */
+function gen_docbloc($file,$filepath,$filetype,$doc){
+	global ${$filetype."_trigger_end"}, ${$filetype."_trigger_start"}; 
+	if (strpos($file,${$filetype."_trigger_end"})!==false){
+		$matches=preg_grep('/'.${$filetype."_trigger_start"}.'/', file($filepath));
+		//var_dump($matches);
+		unset($line_start);
+		unset($line_end);
+		foreach($matches as $key=>$lin){
+			if(strpos($lin,${$filetype."_trigger_end"})!==false) $line_end=$key;
+		}
+		foreach($matches as $key=>$lin){
+			if(strpos($lin,${$filetype."_trigger_start"})!==false and strpos($lin,${$filetype."_trigger_end"})===false and $key<=$line_end) $line_start=$key;
+		}
+		if(!isset($line_start)) $line_start=$line_end;
+		$filecontent=file($filepath);
+		$remove="";
+		//echo $line_start."@".$line_end;
+		for ($i = $line_start; $i <= $line_end; $i++) { $remove.=$filecontent[$i]; }
+		$file = str_replace($remove, $doc, $file);
+		echo "  > $filepath";
+		$file = file_put_contents($filepath,$file);
+		echo ".. docbloc updated!\n";
+	}
+}
+
+/* Updating your project scripts w/ new docBlock */
 foreach ($files as $filepath){
-	/* Generating DocBlock */
+	/* Generating docBlock */
 	$filetype=pathinfo($filepath, PATHINFO_EXTENSION);
 	$doc=${$filetype."_doc"};
 	foreach ($vars as $key=>$var){
@@ -187,7 +213,7 @@ foreach ($files as $filepath){
 	//PHP
 	if ($filetype=="php"){
 		foreach (token_get_all($file) as $token ) {
-		    if ($token[0] != T_DOC_COMMENT) {
+		    if ($token[0] != T_DOC_COMMENT) { //php have your own way to extract docbloc
 		        continue;
 		    }
 		    if (strpos($token[1],${$filetype."_trigger"})!==false){
@@ -199,100 +225,8 @@ foreach ($files as $filepath){
 		}
 	}
 	//SHELL SCRIPT
-	if ($filetype=="sh"){
-		if (strpos($file,${$filetype."_trigger_end"})!==false){
-			$matches=preg_grep('/'.${$filetype."_trigger_start"}.'/', file($filepath));
-			//var_dump($matches);
-			unset($line_start);
-			unset($line_end);
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_end"})!==false) $line_end=$key;
-			}
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_start"})!==false and strpos($lin,${$filetype."_trigger_end"})===false and $key<=$line_end) $line_start=$key;
-			}
-			if(!isset($line_start)) $line_start=$line_end;
-			$filecontent=file($filepath);
-			$remove="";
-			for ($i = $line_start; $i <= $line_end; $i++) { $remove.=$filecontent[$i]; }
-			$file = str_replace($remove, $doc, $file);
-			echo "  > $filepath";
-			$file = file_put_contents($filepath,$file);
-			echo ".. docbloc updated!\n";
-		}
-	}
-	//INI
-	if ($filetype=="ini"){
-		if (strpos($file,${$filetype."_trigger_end"})!==false){
-			$matches=preg_grep('/'.${$filetype."_trigger_start"}.'/', file($filepath));
-			//var_dump($matches);
-			unset($line_start);
-			unset($line_end);
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_end"})!==false) $line_end=$key;
-			}
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_start"})!==false and strpos($lin,${$filetype."_trigger_end"})===false and $key<=$line_end) $line_start=$key;
-			}
-			if(!isset($line_start)) $line_start=$line_end;
-			$filecontent=file($filepath);
-			$remove="";
-			//echo $line_start."@".$line_end;
-			for ($i = $line_start; $i <= $line_end; $i++) { $remove.=$filecontent[$i]; }
-			$file = str_replace($remove, $doc, $file);
-			echo "  > $filepath";
-			$file = file_put_contents($filepath,$file);
-			echo ".. docbloc updated!\n";
-		}
-	}
-	//BAT
-	if ($filetype=="bat"){
-		if (strpos($file,${$filetype."_trigger_end"})!==false){
-			$matches=preg_grep('/'.${$filetype."_trigger_start"}.'/', file($filepath));
-			//var_dump($matches);
-			unset($line_start);
-			unset($line_end);
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_end"})!==false) $line_end=$key;
-			}
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_start"})!==false and strpos($lin,${$filetype."_trigger_end"})===false and $key<=$line_end) $line_start=$key;
-			}
-			if(!isset($line_start)) $line_start=$line_end;
-			$filecontent=file($filepath);
-			$remove="";
-			//echo $line_start."@".$line_end;
-			for ($i = $line_start; $i <= $line_end; $i++) { $remove.=$filecontent[$i]; }
-			$file = str_replace($remove, $doc, $file);
-			echo "  > $filepath";
-			$file = file_put_contents($filepath,$file);
-			echo ".. docbloc updated!\n";
-		}
-	}
-	//md
-	if ($filetype=="md"){
-		if (strpos($file,${$filetype."_trigger_end"})!==false){
-			$matches=preg_grep('/'.${$filetype."_trigger_start"}.'/', file($filepath));
-			//var_dump($matches);
-			//die;
-			unset($line_start);
-			unset($line_end);
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_end"})!==false) $line_end=$key;
-			}
-			foreach($matches as $key=>$lin){
-				if(strpos($lin,${$filetype."_trigger_start"})!==false and strpos($lin,${$filetype."_trigger_end"})===false and $key<=$line_end) $line_start=$key;
-			}
-			if(!isset($line_start)) $line_start=$line_end;
-			$filecontent=file($filepath);
-			$remove="";
-			//echo $line_start."@".$line_end;
-			for ($i = $line_start; $i <= $line_end; $i++) { $remove.=$filecontent[$i]; }
-			$file = str_replace($remove, $doc, $file);
-			echo "  > $filepath";
-			$file = file_put_contents($filepath,$file);
-			echo ".. docbloc updated!\n";
-		}
+	if ($filetype=="sh" or $filetype=="ini" or $filetype=="bat" or $filetype=="md"){
+		gen_docbloc($file,$filepath,$filetype,$doc); //other filetypes need gen_docbloc() to extract docbloc
 	}
 }
 echo "# All done!\n";

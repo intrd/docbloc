@@ -1,6 +1,6 @@
 <!-- docbloc -->
 <span id='docbloc'>
-PHP DocBloc - Generate and keep updated DocBlock of your project files fetching details from composer.json and Git. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
+PHP docBloc - Generate and keep updated docBlock of your project files fetching details from composer.json and Git. Supported filetypes: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).
 <table>
 <tr>
 <th>Package</th>
@@ -8,7 +8,7 @@ PHP DocBloc - Generate and keep updated DocBlock of your project files fetching 
 </tr>
 <tr>
 <th>Version</th>
-<td>1.0</td>
+<td>1.1</td>
 </tr>
 <tr>
 <th>Tags</th>
@@ -35,7 +35,7 @@ PHP DocBloc - Generate and keep updated DocBlock of your project files fetching 
 </tr>
 </table>
 </span>
-<!-- @docbloc 1.0 -->
+<!-- @docbloc 1.1 -->
 
 Installation
 ============
