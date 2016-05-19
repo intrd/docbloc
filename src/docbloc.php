@@ -1,6 +1,6 @@
 <?php
 /**
- * PHP DocBloc - Batch generate and keep updated DockBlock of your project files fetching details from composer.json and .git/HEAD. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
+ * PHP DocBloc - Generate and keep updated DocBlock of your project files fetching details from composer.json and Git. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
  * 
 * @package intrd/php-docbloc
 * @version 1.0
@@ -13,9 +13,6 @@
 *** @docbloc 1.0 */
 
 /* Default config */
-	$path=__DIR__.'/'; //current dir and upper levels
-	$filetypes_regex='/^.+(.php|.sh|.ini|.bat|.md)$/i'; //regex of file search
-
 	//PHP SCRIPT
 	$php_trigger_start="/**";
 	$php_doc="$php_trigger_start\n * <composer_description>\n* \n* @package <composer_name>\n* @version <git_branch_version>\n* @tags <composer_keywords>\n* @link <composer_homepage>";
@@ -161,8 +158,12 @@ echo " ** starting..\n";
 
 if (!file_exists("composer.json")) 
 	die(" ** ./composer.json file not found, aborting...\n");
+if (!file_exists(".git/HEAD")) 
+	echo " ** .git/HEAD file not found, the version of your project will not be fetched...\n";
 
 /* Recursively list all matched files */
+$path=__DIR__.'/'; //current dir and upper levels
+$filetypes_regex='/^.+(.php|.sh|.ini|.bat|.md)$/i'; //regex of file search
 $directory = new RecursiveDirectoryIterator($path);
 $iterator = new RecursiveIteratorIterator($directory);
 $regex = new RegexIterator($iterator, $filetypes_regex, RecursiveRegexIterator::GET_MATCH);

@@ -1,6 +1,6 @@
 <!-- docbloc -->
 <span id='docbloc'>
-PHP DocBloc - Batch generate and keep updated DockBlock of your project files fetching details from composer.json and .git/HEAD. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).
+PHP DocBloc - Generate and keep updated DocBlock of your project files fetching details from composer.json and Git. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
 <table>
 <tr>
 <th>Package</th>
@@ -50,12 +50,12 @@ $ sudo apt-get install git php-curl php-cli
 ```
 ## Composer.json sample
 
-DocBloc fetch all your project details from `composer.json`. If your project still does not have one, create it following sample below and put at your project root path.
+DocBloc fetch your project details from `composer.json`. If your project still does not have one, create it following sample below and put at your project root path.
 
 ```
 {
     "name": "intrd/php-docbloc",
-    "description": "PHP DocBloc - Batch generate and keep updated DockBlock of your project files fetching details from composer.json and .git/HEAD. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).",
+    "description": "PHP DocBloc - Generate and keep updated DocBlock of your project files fetching details from composer.json and Git. Supported formats: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).",
     "keywords": ["php","docblock","documentation","tool"],
     "homepage": "http://github.com/intrd/php-docbloc",
     "authors": [
@@ -86,7 +86,7 @@ DocBloc fetch all your project details from `composer.json`. If your project sti
 
 ## Docbloc triggers
 
-Every file format have your own trigger, put this on header of the files that you want to DocBloc start managment.
+Each file format have your own trigger, put this at file headers that you want to DocBloc start managment.
 
 PHP - Script
 ```
@@ -114,12 +114,13 @@ Considering that you already have:
 - PHP working 
 - Created/edited your `composer.json`
 - Filled all files w/ the correct DocBloc trigger 
+- (optional) You are controlling the versioning of your project by Git branch name. It's optional, but docbloc fetch version from .git/HEAD. If your project are not gitted, docbloc will not display the Version field at files. 
 
 Now go to your project root and run:
 ```
 $ wget -O docbloc.php https://raw.githubusercontent.com/intrd/php-docbloc/1.0/src/docbloc.php && php docbloc.php && rm docbloc.php
 ```
 Done,
-Every time you change any project detail at `composer.json` or create a new `git branch` version, simply run DocBloc again to keep all things updated.
+Every time you change any project detail at `composer.json` or create a new `git branch` version, simply run DocBloc again to keep all your files docbloc header updated. Yes, it works recursively on upper directory levels too.
 
 
