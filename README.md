@@ -113,6 +113,7 @@ Now go to your project root and run:
 $ wget -O docbloc.php https://raw.githubusercontent.com/intrd/php-docbloc/1.0/src/docbloc.php && php docbloc.php && rm docbloc.php
 ```
 ![running-docbloc](/imgs/run.png?raw=true "running-docbloc")
+
 It will download docbloc.php script, run and remove it.
 
 Done,
