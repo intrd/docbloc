@@ -100,13 +100,17 @@ MD - Markdown files like README.md
 ```
 <!-- @docbloc -->
 ```
+
+## Git details
+(optional) I recommend you to control the versioning of your project by Git branch name. It's optional, but docbloc fetch version from .git/HEAD. If your project are not gitted, docbloc will not display the Version field at files. 
+
 ## Usage
 
 Considering that you already have:
 - PHP working 
 - Created/edited your `composer.json`
 - Filled all files w/ the correct docBloc trigger 
-- (optional) You are controlling the versioning of your project by Git branch name. It's optional, but docbloc fetch version from .git/HEAD. If your project are not gitted, docbloc will not display the Version field at files. 
+- (optional) a working .git/HEAD
 
 Now go to your project root and run:
 ```
