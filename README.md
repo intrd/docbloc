@@ -64,7 +64,7 @@ docBloc fetch your project details from `composer.json`. If your project still d
     },
     "autoload": {
         "psr-4": {
-            "telegram\\":"src/"
+            "php\\":"src/"
         }
     },
     "extra": {
