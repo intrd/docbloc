@@ -1,10 +1,10 @@
 <!-- docbloc -->
 <span id='docbloc'>
-PHP docBloc - Generate and keep updated docBlock of your project files fetching details from composer.json and Git. Supported filetypes: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool). 
+docBloc - Generate and keep updated docBlock of your project files fetching details from composer.json and Git data. Supported filetypes: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR needed to use this tool). 
 <table>
 <tr>
 <th>Package</th>
-<td>intrd/php-docbloc</td>
+<td>intrd/docbloc</td>
 </tr>
 <tr>
 <th>Version</th>
@@ -12,11 +12,11 @@ PHP docBloc - Generate and keep updated docBlock of your project files fetching 
 </tr>
 <tr>
 <th>Tags</th>
-<td>php, docblock, documentation, tool</td>
+<td>docblock, documentation, tool</td>
 </tr>
 <tr>
 <th>Project URL</th>
-<td>http://github.com/intrd/php-docbloc</td>
+<td>http://github.com/intrd/docbloc</td>
 </tr>
 <tr>
 <th>Author</th>
@@ -46,10 +46,10 @@ docBloc fetch your project details from `composer.json`. If your project still d
 
 ```
 {
-    "name": "intrd/php-docbloc",
+    "name": "intrd/docbloc",
     "description": "PHP docBloc - Generate and keep updated docBlock of your project files fetching details from composer.json and Git. Supported filetypes: *.php, *.ini, *.sh, *.bat, *.md (No Composer or PEAR need to be installed to use this tool).",
     "keywords": ["php","docblock","documentation","tool"],
-    "homepage": "http://github.com/intrd/php-docbloc",
+    "homepage": "http://github.com/intrd/docbloc",
     "authors": [
             {
                 "name": "intrd (Danilo Salles)",
@@ -114,7 +114,7 @@ Considering that you already have:
 
 Now go to your project root and run:
 ```
-$ wget -O docbloc.php https://raw.githubusercontent.com/intrd/php-docbloc/1.1/src/docbloc.php && php docbloc.php && rm docbloc.php
+$ wget -O docbloc.php https://raw.githubusercontent.com/intrd/docbloc/1.1/src/docbloc.php && php docbloc.php && rm docbloc.php
 ```
 ![running-docbloc](/imgs/run.png?raw=true "running-docbloc")
 
